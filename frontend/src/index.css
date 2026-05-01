@@ -1,0 +1,237 @@
+@import "tailwindcss";
+
+/* ===================== */
+/* 🎨 THEME VARIABLES - BRIGHT, ATTRACTIVE, VIBRANT */
+/* ===================== */
+@theme {
+  --font-sans: "Inter", "Outfit", "Roboto", sans-serif;
+
+  --primary: #4f46e5;
+  --secondary: #0ea5e9;
+  --accent: #10b981;
+
+  --bg-main: #f8fafc;
+  --bg-card: rgba(255, 255, 255, 0.7);
+
+  --text-main: #0f172a;
+}
+
+/* ===================== */
+/* 🌌 GLOBAL STYLE & OVERRIDES */
+/* ===================== */
+@layer base {
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    background: linear-gradient(135deg, #f0f4ff 0%, #e0e7ff 40%, #cffafe 100%) !important;
+    color: var(--text-main);
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Outfit", "Inter", sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #0f172a !important;
+  }
+}
+
+/* ===================== */
+/* ✨ PREMIUM COMPONENT OVERRIDES (TO FIX ANY REMAINING DARK UI) */
+/* ===================== */
+:root {
+  color-scheme: light;
+}
+
+/* Overriding any stray dark Tailwind classes to ensure complete bright transformation */
+.bg-\[\#0a0a0a\], .bg-\[\#111\] { background-color: rgba(255,255,255,0.9) !important; }
+.text-white { color: #1e293b !important; }
+.text-gray-400, .text-gray-500 { color: #475569 !important; }
+.text-gray-300 { color: #334155 !important; }
+.bg-black\/60, .bg-black\/40 { background-color: rgba(255, 255, 255, 0.7) !important; backdrop-filter: blur(16px) !important; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05) !important; }
+.border-white\/10, .border-white\/5 { border-color: rgba(203, 213, 225, 0.6) !important; }
+.bg-white\/5 { background-color: rgba(255,255,255,0.6) !important; box-shadow: 0 4px 6px rgba(0,0,0,0.02) !important; }
+.bg-white\/10 { background-color: rgba(255,255,255,0.9) !important; box-shadow: 0 8px 16px rgba(0,0,0,0.04) !important; }
+
+/* Dashboard Cards & Containers */
+.p-8.lg\:p-12 h1 { color: #1e1b4b !important; }
+.p-8.lg\:p-12 p { color: #4338ca !important; font-weight: 600; }
+
+/* Force rechart texts */
+.recharts-text { fill: #475569 !important; font-weight: 500;}
+.recharts-cartesian-grid-line { stroke: #e2e8f0 !important; }
+
+/* Stats box overrides */
+.hover\:bg-white\/10:hover { background-color: #ffffff !important; transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.08) !important; }
+.hover\:border-white\/20:hover { border-color: #cbd5e1 !important; }
+
+/* ===================== */
+/* 🧊 MODERN GLASSMORPHISM CLASSES */
+/* ===================== */
+.glass {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.glass-panel {
+  background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+  border: 1px solid rgba(255,255,255,1);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+  border-radius: 24px;
+}
+
+/* ===================== */
+/* 🔘 DYNAMIC VIBRANT BUTTONS */
+/* ===================== */
+button {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, #4f46e5, #0ea5e9);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  color: white !important;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  background: linear-gradient(45deg, #4338ca, #0284c7);
+  box-shadow: 0 8px 25px rgba(79, 70, 229, 0.5);
+}
+
+/* ===================== */
+/* 📋 BEAUTIFUL TABLES */
+/* ===================== */
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: rgba(255,255,255,0.8);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+  border: 1px solid #e2e8f0;
+}
+
+.table th,
+.table td {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+  color: #334155;
+}
+
+.table th {
+  background: #f8fafc;
+  font-weight: 700;
+  color: #0f172a;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table tr:hover {
+  background: rgba(241, 245, 249, 0.8);
+}
+
+/* ===================== */
+/* 🔔 FRESH ALERTS */
+/* ===================== */
+.alert {
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  border-left: 6px solid;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.alert-success {
+  background: #dcfce7;
+  color: #166534;
+  border-left-color: #22c55e;
+}
+
+.alert-warning {
+  background: #fef3c7;
+  color: #92400e;
+  border-left-color: #f59e0b;
+}
+
+.alert-danger {
+  background: #fee2e2;
+  color: #991b1b;
+  border-left-color: #ef4444;
+}
+
+/* Scrollbar tweaks */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Modals */
+.bg-\[\#111\] {
+  background: #ffffff !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+/* Sidebar Specific */
+aside {
+  border-right: 1px solid rgba(255,255,255,0.7) !important;
+  background: rgba(255,255,255,0.65) !important;
+  backdrop-filter: blur(24px) !important;
+}
+
+/* Main gradient smooth */
+main {
+  background: linear-gradient(135deg, #f0f4ff 0%, #e0e7ff 40%, #cffafe 100%) !important;
+}
+
+/* ===================== */
+/* 📝 INPUT BOX OVERRIDES */
+/* ===================== */
+input, textarea, select {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Override the specific raw dark color code that was missed */
+.bg-\[\#050505\] {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}

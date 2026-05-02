@@ -24,7 +24,7 @@ const SupplierPortal = ({ user, onLogout }) => {
     const fetchHistory = async () => {
         setLoadingHistory(true);
         try {
-            const res = await axios.get(`http://localhost:5000/api/admin/shipment-logs`);
+            const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/shipment-logs`);
             // Filter only this supplier's logs
             const myLogs = res.data.filter(log => log.supplier_name === user.name);
             setHistory(myLogs);
@@ -43,7 +43,7 @@ const SupplierPortal = ({ user, onLogout }) => {
         setErrorMsg('');
         setSuccessMsg('');
         try {
-            await axios.post('http://localhost:5000/api/supplier/add-inventory', {
+            await axios.post(`${import.meta.env.VITE_API_URL}/api/supplier/add-inventory`, {
                 supplier_id: user.id,
                 drug_name: drugName,
                 quantity: parseInt(quantity),

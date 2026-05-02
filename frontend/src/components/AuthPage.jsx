@@ -23,7 +23,7 @@ const AuthPage = ({ onLogin }) => {
 
     try {
       if (isLogin) {
-        const res = await axios.post('http://localhost:5000/api/auth/login', { email, password, role });
+        const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, { email, password, role });
         onLogin(res.data.user);
       } else {
         if (role === 'admin') {
@@ -31,7 +31,7 @@ const AuthPage = ({ onLogin }) => {
            setLoading(false);
            return;
         }
-        await axios.post('http://localhost:5000/api/auth/register-supplier', { name, email, phone, password });
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register-supplier`, { name, email, phone, password });
         setSuccessMsg("NexusMed access request submitted. Pending manual approval.");
         setIsLogin(true);
       }

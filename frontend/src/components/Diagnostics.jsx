@@ -34,12 +34,12 @@ const Diagnostics = () => {
         }, 800);
 
         try {
-            const res = await axios.get('http://localhost:5000/api/admin/run-diagnostics');
+            const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/run-diagnostics`);
             setResults(res.data);
             
             // Also fetch security benchmarks
             try {
-                const benchRes = await axios.get('http://localhost:5000/api/admin/security-benchmarks');
+                const benchRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/security-benchmarks`);
                 setBenchmarks(benchRes.data);
             } catch (e) {
                 console.error("Benchmarks failed", e);

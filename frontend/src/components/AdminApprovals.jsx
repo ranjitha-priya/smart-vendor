@@ -8,7 +8,7 @@ const AdminApprovals = () => {
 
     const fetchPending = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/admin/pending-suppliers');
+            const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/pending-suppliers`);
             setPending(res.data);
         } catch (err) {
             console.error(err);
@@ -21,7 +21,7 @@ const AdminApprovals = () => {
 
     const handleAction = async (id, action) => {
         try {
-            await axios.put(`http://localhost:5000/api/admin/${action}-supplier/${id}`);
+            await axios.put(`${import.meta.env.VITE_API_URL}/api/admin/${action}-supplier/${id}`);
             fetchPending();
         } catch (err) {
             alert(`Neural link failure during ${action} protocol.`);

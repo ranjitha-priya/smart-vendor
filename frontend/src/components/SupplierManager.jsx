@@ -11,7 +11,7 @@ const SupplierManager = () => {
          try {
              let dbRes;
              try {
-                 dbRes = await axios.get('http://localhost:5000/api/suppliers/approved');
+                 dbRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/suppliers/approved`);
              } catch (e) { dbRes = { data: [] }; }
              
              let baseData = dbRes.data;
@@ -30,7 +30,7 @@ const SupplierManager = () => {
 
                 // Try ML service first
                 try {
-                    const res = await axios.post('http://localhost:8000/supplier-grading', {
+                    const res = await axios.post(`${import.meta.env.VITE_API_URL}/supplier-grading`, {
                        supplier_id: sup.id,
                        lead_times: [baseLead, baseLead + 0.5, baseLead - 0.5],
                        defect_rates: [baseDefect, baseDefect + 0.01]

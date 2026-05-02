@@ -20,7 +20,7 @@ const SupplierIntelligence = ({ initialDrugId }) => {
     const fetchData = async () => {
         try {
             try {
-                const drugsRes = await axios.get('http://localhost:5000/api/drugs');
+                const drugsRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/drugs`);
                 setDrugs(drugsRes.data);
                 if (initialDrugId) {
                     setDrugId(initialDrugId);
@@ -34,11 +34,11 @@ const SupplierIntelligence = ({ initialDrugId }) => {
 
             // 2. Fetch approved supplier scores
             try {
-                const res = await axios.get('http://localhost:5000/api/suppliers/approved');
+                const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/suppliers/approved`);
                 if (res.data.length > 0) {
                     const scoredSuppliers = await Promise.all(res.data.map(async (s) => {
                         try {
-                            const riskRes = await axios.post('http://localhost:8000/predict-risk', {
+                            const riskRes = await axios.post(`${import.meta.env.VITE_API_URL}/predict-risk`, {
                                 supplier_id: s.id,
                                 historical_delays: [Math.floor(Math.random() * 5), Math.floor(Math.random() * 5), Math.floor(Math.random() * 5)],
                                 volatility_index: Math.random()
@@ -64,7 +64,7 @@ const SupplierIntelligence = ({ initialDrugId }) => {
 
             // 3. Fetch real vendor metrics
             try {
-                const metricsRes = await axios.get('http://localhost:5000/api/analytics/supplier-metrics');
+                const metricsRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/analytics/supplier-metrics`);
                 setTrends(metricsRes.data || []);
             } catch (e) {
                 setTrends([]);
@@ -72,7 +72,7 @@ const SupplierIntelligence = ({ initialDrugId }) => {
 
             // 4. Fetch real shipment logs
             try {
-                const logsRes = await axios.get('http://localhost:5000/api/admin/shipment-logs');
+                const logsRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/shipment-logs`);
                 setLogs(logsRes.data || []);
             } catch (e) {
                 setLogs([]);
@@ -80,7 +80,7 @@ const SupplierIntelligence = ({ initialDrugId }) => {
 
             // 5. Fetch real expiration horizon data
             try {
-                const expRes = await axios.get('http://localhost:5000/api/analytics/expiration-horizon');
+                const expRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/analytics/expiration-horizon`);
                 setExpirationData(expRes.data);
             } catch (e) {
                 console.error("Failed to fetch expiration data", e);
@@ -99,7 +99,7 @@ const SupplierIntelligence = ({ initialDrugId }) => {
 
     const handleUpdateStatus = async (orderId, newStatus) => {
         try {
-            await axios.put(`http://localhost:5000/api/orders/${orderId}/status`, {
+            await axios.put(`${import.meta.env.VITE_API_URL}/api/orders/${orderId}/status`, {
                 status: newStatus,
                 delivery_date: newStatus === 'delivered' ? new Date().toISOString().slice(0, 19).replace('T', ' ') : null,
                 quality_rating: 5 
@@ -124,7 +124,7 @@ const SupplierIntelligence = ({ initialDrugId }) => {
         setRecError(null);
         setRecommendation(null);
         try {
-            const res = await axios.post('http://localhost:5000/api/recommend-supplier', {
+            const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/recommend-supplier`, {
                 drug_id: drugId,
                 priority
             });

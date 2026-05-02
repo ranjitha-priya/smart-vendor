@@ -14,7 +14,7 @@ const InventoryManager = () => {
   const fetchItems = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('http://localhost:5000/api/drugs');
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/drugs`);
       
       // Smart Grouping Logic: Merge identical names to prevent duplicate UI rows
       const groupedData = res.data.reduce((acc, current) => {
@@ -59,9 +59,9 @@ const InventoryManager = () => {
     
     try {
       if (editingId) {
-        await axios.put(`http://localhost:5000/api/drugs/${editingId}`, formData);
+        await axios.put(`${import.meta.env.VITE_API_URL}/api/drugs/${editingId}`, formData);
       } else {
-        await axios.post('http://localhost:5000/api/drugs', formData);
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/drugs`, formData);
       }
       setFormData({ name: '', description: '', critical_threshold: 50 });
       setEditingId(null);
@@ -81,7 +81,7 @@ const InventoryManager = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Authorize permanent deletion of this asset record?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/drugs/${id}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/drugs/${id}`);
       fetchItems();
     } catch (err) {
       setErrorMsg("Failed to purge asset record.");

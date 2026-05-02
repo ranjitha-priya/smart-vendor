@@ -64,7 +64,7 @@ const Dashboard = ({ onNavigate, onNavigateWithDrug }) => {
   useEffect(() => {
     const fetchHealth = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/admin/system-health');
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/system-health`);
         setHealthData(res.data);
         setApiError(false);
       } catch (e) {
@@ -85,7 +85,7 @@ const Dashboard = ({ onNavigate, onNavigateWithDrug }) => {
 
     const fetchVendorStats = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/suppliers/approved');
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/suppliers/approved`);
         // Filter out those with N/A or 0 score if you want, or show all
         const sorted = res.data.sort((a, b) => b.reliability_score - a.reliability_score).slice(0, 5);
         setVendorStats(sorted);

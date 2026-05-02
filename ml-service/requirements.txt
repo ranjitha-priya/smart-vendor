@@ -1,6 +1,1 @@
-fastapi
-uvicorn
-scikit-learn
-pandas
-numpy
-python-dotenv
+VITE_API_URL=https://smart-vendor-1.onrender.com

@@ -2,7 +2,7 @@ import mysql from 'mysql2/promise';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const mysql = require("mysql2");
+
 
 const db = mysql.createConnection({
   host: process.env.DB_HOST,

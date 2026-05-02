@@ -1,8 +1,4 @@
-import mysql from 'mysql2/promise';
-import dotenv from 'dotenv';
-dotenv.config();
-
-
+import mysql from "mysql2";
 
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
@@ -13,4 +9,4 @@ const db = mysql.createConnection({
   ssl: { rejectUnauthorized: false }
 });
 
-module.exports = db;
+export default db;

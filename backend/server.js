@@ -231,7 +231,7 @@ async function updateSupplierReliability(supplier_id) {
         const defects = orders.map(o => (o.quality_rating || 5) < 3 ? 1 : 0);
 
         try {
-            const mlRes = await axios.post('http://localhost:8000/supplier-grading', {
+            const mlRes = await axios.post('https://smart-vendor-1.onrender.com/supplier-grading', {
                 supplier_id,
                 lead_times: lead_times.length > 0 ? lead_times : [3],
                 defect_rates: defects.length > 0 ? defects : [0]
@@ -464,7 +464,7 @@ app.post('/api/recommend-supplier', async (req, res) => {
 
         // 3. Try Machine Learning Engine first
         try {
-            const mlRes = await axios.post('http://localhost:8000/smart-recommendation', {
+            const mlRes = await axios.post('https://smart-vendor-1.onrender.com/smart-recommendation', {
                 priority: priority || 'reliability',
                 suppliers: mlSuppliers
             });
@@ -596,6 +596,8 @@ app.get('/api/analytics/expiration-horizon', async (req, res) => {
         res.status(500).json({ error: "Failed to fetch expiration analytics." });
     }
 });
+
+
 
 // Real-Time Neural Diagnostics Engine
 app.get('/api/admin/run-diagnostics', async (req, res) => {
